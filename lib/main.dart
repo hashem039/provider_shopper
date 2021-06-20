@@ -9,6 +9,7 @@ import 'package:provider_shopper/models/cart.dart';
 import 'package:provider_shopper/models/catalog.dart';
 import 'package:provider_shopper/screens/cart.dart';
 import 'package:provider_shopper/screens/catalog.dart';
+import 'package:provider_shopper/screens/itemDetails.dart';
 import 'package:provider_shopper/screens/login.dart';
 
 void main() {
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => MyLogin(),
           '/catalog': (context) => MyCatalog(),
           '/cart': (context) => MyCart(),
+          itemDetails.routeName: (context) => itemDetails(),
         },
       ),
     );

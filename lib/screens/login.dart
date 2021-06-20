@@ -8,8 +8,10 @@ class MyLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
+      body: ListView(
+        children: <Widget> [
+
+        Container(
           padding: const EdgeInsets.all(80.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -38,12 +40,13 @@ class MyLogin extends StatelessWidget {
                   Navigator.pushReplacementNamed(context, '/catalog');
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.yellow,
+                  primary: Theme.of(context).primaryColor,
                 ),
               )
             ],
           ),
         ),
+        ],
       ),
     );
   }

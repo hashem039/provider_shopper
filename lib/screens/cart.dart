@@ -12,15 +12,15 @@ class MyCart extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Cart', style: Theme.of(context).textTheme.headline1),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Container(
-        color: Colors.yellow,
+        color: Theme.of(context).primaryColorLight,
         child: Column(
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(32),
+                padding: const EdgeInsets.all(2),
                 child: _CartList(),
               ),
             ),
@@ -44,19 +44,44 @@ class _CartList extends StatelessWidget {
 
     return ListView.builder(
       itemCount: cart.items.length,
-      itemBuilder: (context, index) => ListTile(
-        leading: const Icon(Icons.done),
-        trailing: IconButton(
-          icon: const Icon(Icons.remove_circle_outline),
-          onPressed: () {
-            cart.remove(cart.items[index]);
-          },
+      itemBuilder: (context, index) => Container(
+        decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.black,
+            ),
+            borderRadius: BorderRadius.all(Radius.circular(20.0))
         ),
-        title: Text(
-          cart.items[index].name,
-          style: itemNameStyle,
+        child: ListTile(
+          leading: const Icon(Icons.done),
+          trailing: IconButton(
+            icon: const Icon(Icons.remove_circle_outline),
+            onPressed: () {
+              cart.remove(cart.items[index]);
+            },
+          ),
+          title: Text(
+            cart.items[index].name,
+            style: itemNameStyle,
+          ),
+          onTap: ()
+              {
+                final snackBar = SnackBar(
+                    backgroundColor: Colors.black54,
+                    content: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Price: "),
+                        Text(cart.items[index].price.toString(),)
+                      ],
+                    ));
+
+                 // Find the ScaffoldMessenger in the widget tree
+                // and use it to show a SnackBar.
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              }
         ),
       ),
+
     );
   }
 }

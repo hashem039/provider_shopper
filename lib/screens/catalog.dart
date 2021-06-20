@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_shopper/models/cart.dart';
 import 'package:provider_shopper/models/catalog.dart';
+import 'package:provider_shopper/screens/itemDetails.dart';
 
 class MyCatalog extends StatelessWidget {
   @override
@@ -99,27 +100,33 @@ class _MyListItem extends StatelessWidget {
     );
     var textTheme = Theme.of(context).textTheme.headline6;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: LimitedBox(
-        maxHeight: 48,
-        child: Row(
-          children: [
-            AspectRatio(
-              aspectRatio: 1,
-              child: Container(
-                color: item.color,
-              ),
-            ),
-            const SizedBox(width: 24),
-            Expanded(
-              child: Text(item.name, style: textTheme),
-            ),
-            const SizedBox(width: 24),
-            _AddButton(item: item),
-          ],
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Theme.of(context).primaryColorLight,
         ),
+          borderRadius: BorderRadius.all(Radius.circular(20.0))
+      ),
+      child: ListTile(
+        minVerticalPadding: 20,
+        leading: AspectRatio(
+          aspectRatio: 1,
+          child: Container(
+            color: item.color,
+          ),
+        ),
+        title: Text(item.name, style: textTheme),
+        trailing: _AddButton(item: item),
+        onTap: () => Navigator.pushNamed(context, itemDetails.routeName,arguments: ScreenArguments(item.name, item.id.toString())),
       ),
     );
   }
 }
+class ScreenArguments {
+  final String title;
+  final String message;
+
+  ScreenArguments(this.title, this.message);
+}
+
+

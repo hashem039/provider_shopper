@@ -5,7 +5,8 @@
 import 'package:flutter/material.dart';
 
 final appTheme = ThemeData(
-  primarySwatch: Colors.yellow,
+  primaryColor: Colors.lightBlue[600],
+  primaryColorLight: Colors.lightBlue[50],
   textTheme: const TextTheme(
     headline1: TextStyle(
       fontFamily: 'Corben',
